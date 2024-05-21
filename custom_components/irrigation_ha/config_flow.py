@@ -33,9 +33,9 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
         return self.async_show_form(
             step_id='user',
             data_schema=vol.Schema({
-                vol.Required(CONF_COUNT): int,
+                vol.Required(CONF_COUNT): cv.positive_int,
                 vol.Required(CONF_ENTITY_ID):
-                    cv.entity_domain('binary_sensor'),
+                    cv.entity_domain('camera'),
             }),
             errors=errors,
         )
