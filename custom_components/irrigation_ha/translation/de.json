@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "F\u00fcller deine KNV Home Daten ein",
+        "data": {
+          "ip_address": "IP Adresse",
+          "username": "Nutzernamen",
+          "password": "Passwort"
+        }
+      }
+    },
+    "error": {
+      "already_configured": "Ger\u00e4t bereits konfiguriert",
+      "invalid_ip": "Keine g\u00fcltige IP angegeben"
+    }
+  }
+}
