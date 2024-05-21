@@ -1,0 +1,16 @@
+{
+  "domain": "irrigation_ha",
+  "name": "Irrigation HA",
+  "codeowners": [
+    "@LDprg"
+  ],
+  "config_flow": true,
+  "requirements": [],
+  "documentation": "https://github.com/LDprg/irrigation_ha",
+  "issue_tracker": "https://github.com/LDprg/irrigation_ha/issues",
+  "iot_class": "calculated",
+  "loggers": [
+    "custom_components.irrigation_ha"
+  ],
+  "version": "0.0.0"
+}

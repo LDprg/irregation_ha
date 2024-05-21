@@ -1,5 +1,7 @@
 {
-    "name": "Irrigation ha",
-    "render_readme": true,
-    "country": ["DE"]
+  "name": "Irrigation HA",
+  "render_readme": true,
+  "country": [
+    "DE"
+  ]
 }
