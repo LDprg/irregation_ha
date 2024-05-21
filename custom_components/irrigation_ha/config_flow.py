@@ -24,11 +24,17 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
     """
 
     async def async_step_user(
-            self, _user_input,
+            self, user_input,
     ):
         """
         Init step
         """
+
+        if user_input is not None:
+            return self.async_create_entry(
+                title=user_input[CONF_ENTITY_ID],
+                data=user_input,
+            )
 
         return self.async_show_form(
             data_schema=vol.Schema({
