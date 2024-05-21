@@ -1,12 +1,14 @@
 """Config flow for integration."""
+from __future__ import annotations
+
 from typing import Any
 
+import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow
 from homeassistant.config_entries import ConfigFlowResult
-from homeassistant.const import CONF_IP_ADDRESS
-from homeassistant.const import CONF_PASSWORD
-from homeassistant.const import CONF_USERNAME
+from homeassistant.const import CONF_COUNT
+from homeassistant.const import CONF_ENTITY_ID
 
 from . import const as irri
 
@@ -31,9 +33,8 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
         return self.async_show_form(
             step_id='user',
             data_schema=vol.Schema({
-                vol.Required(CONF_IP_ADDRESS): str,
-                vol.Required(CONF_USERNAME): str,
-                vol.Required(CONF_PASSWORD): str,
+                vol.Required(CONF_COUNT): int,
+                vol.Required(CONF_ENTITY_ID): cv.entity_id,
             }),
             errors=errors,
         )

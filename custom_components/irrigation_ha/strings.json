@@ -2,17 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "Fill in your KNV Home login information",
+        "title": "Fill in your Irrigation config",
         "data": {
-          "ip_address": "IP Address",
-          "username": "Username",
-          "password": "Password"
+          "entity_id": "Irrigation entity id",
+          "count": "Interval count"
         }
       }
     },
     "error": {
-      "already_configured": "Device is already configured",
-      "invalid_ip": "IP doesn't match valid format"
+      "already_configured": "Device is already configured"
     }
   }
 }

@@ -2,17 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "F\u00fcller deine KNV Home Daten ein",
+        "title": "F\u00fcller deine Irrigation configuration aus",
         "data": {
-          "ip_address": "IP Adresse",
-          "username": "Nutzernamen",
-          "password": "Passwort"
+          "entity_id": "Bew\u00e4sserungs Entity ID",
+          "count": "Interval Anzahl"
         }
       }
     },
     "error": {
-      "already_configured": "Ger\u00e4t bereits konfiguriert",
-      "invalid_ip": "Keine g\u00fcltige IP angegeben"
+      "already_configured": "Ger\u00e4t bereits konfiguriert"
     }
   }
 }
