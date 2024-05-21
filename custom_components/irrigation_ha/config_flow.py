@@ -13,6 +13,7 @@ from homeassistant.components.switch import DOMAIN as SWITCH_DOMAIN
 from homeassistant.config_entries import ConfigFlow
 from homeassistant.const import CONF_COUNT
 from homeassistant.const import CONF_ENTITY_ID
+from homeassistant.helpers import selector
 
 from . import const as irri
 
@@ -30,13 +31,16 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
         """
 
         return self.async_show_form(
-            step_id='user',
             data_schema=vol.Schema({
                 vol.Required(CONF_COUNT, default=1): cv.positive_int,
-                vol.Required(CONF_ENTITY_ID): vol.Any(
-                    cv.entity_domain(BINARY_SENSOR_DOMAIN),
-                    cv.entity_domain(INPUT_BOOLEAN_DOMAIN),
-                    cv.entity_domain(SWITCH_DOMAIN),
+                vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
+                    selector.EntitySelectorConfig(
+                        domain=[
+                            SWITCH_DOMAIN,
+                            INPUT_BOOLEAN_DOMAIN,
+                            BINARY_SENSOR_DOMAIN,
+                        ], multiple=False,
+                    ),
                 ),
             }),
         )
