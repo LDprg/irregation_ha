@@ -70,7 +70,7 @@ repos:
     rev: v2.1.0
     hooks:
       - id: autopep8
-        args: [--experimental,--in-place]
+        args: [--experimental, --in-place]
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     rev: v1.3.3
@@ -87,5 +87,11 @@ repos:
     rev: v3.2.2
     hooks:
       - id: pylint
+        types: [python]
+        args: [
+            "-rn", # Only display messages
+            "-sn", # Don't display the score
+            "--rcfile=pylintrc",
+          ]
         additional_dependencies:
           - homeassistant

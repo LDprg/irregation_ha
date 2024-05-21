@@ -1,8 +1,6 @@
 """Config flow for integration."""
 from __future__ import annotations
 
-from typing import Any
-
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow
@@ -19,7 +17,7 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
     """
 
     async def async_step_user(
-            self, user_input: dict[str, Any] | None = None,
+            self, user_input,
     ) -> ConfigFlowResult:
         """
         Init step
