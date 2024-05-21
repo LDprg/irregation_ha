@@ -6,6 +6,7 @@ import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow
 from homeassistant.config_entries import ConfigFlowResult
 from homeassistant.const import CONF_COUNT
+from homeassistant.const import CONF_ENTITY_ID
 
 from . import const as irri
 
@@ -31,6 +32,7 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
             step_id='user',
             data_schema=vol.Schema({
                 vol.Required(CONF_COUNT, default=1): cv.positive_int,
+                vol.Required(CONF_ENTITY_ID, default=1): cv.positive_int,
                 # vol.Required(CONF_ENTITY_ID):
                 #     cv.entity_domain('camera'),
             }),
