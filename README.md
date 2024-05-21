@@ -1,2 +1,2 @@
-# irregation_ha
-A homeassistant integration for garden irregation
+# irrigation_ha
+A homeassistant integration for garden irrigation
