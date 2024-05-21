@@ -34,7 +34,8 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
             step_id='user',
             data_schema=vol.Schema({
                 vol.Required(CONF_COUNT): int,
-                vol.Required(CONF_ENTITY_ID): cv.entity_id,
+                vol.Required(CONF_ENTITY_ID):
+                    cv.entity_domain('binary_sensor'),
             }),
             errors=errors,
         )
