@@ -32,9 +32,8 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
             step_id='user',
             data_schema=vol.Schema({
                 vol.Required(CONF_COUNT, default=1): cv.positive_int,
-                vol.Required(CONF_ENTITY_ID, default=1): cv.positive_int,
-                # vol.Required(CONF_ENTITY_ID):
-                #     cv.entity_domain('camera'),
+                vol.Required(CONF_ENTITY_ID, default=None):
+                    cv.entity_domain('binary_sensor') | None,
             }),
             errors=errors,
         )
