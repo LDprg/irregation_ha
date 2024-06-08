@@ -24,7 +24,8 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
     """
 
     async def async_step_user(
-            self, user_input,
+        self,
+        user_input,
     ):
         """
         Init step
@@ -37,16 +38,19 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
             )
 
         return self.async_show_form(
-            data_schema=vol.Schema({
-                vol.Required(CONF_COUNT, default=1): cv.positive_int,
-                vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
-                    selector.EntitySelectorConfig(
-                        domain=[
-                            SWITCH_DOMAIN,
-                            INPUT_BOOLEAN_DOMAIN,
-                            BINARY_SENSOR_DOMAIN,
-                        ], multiple=False,
+            data_schema=vol.Schema(
+                {
+                    vol.Required(CONF_COUNT, default=1): cv.positive_int,
+                    vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
+                        selector.EntitySelectorConfig(
+                            domain=[
+                                SWITCH_DOMAIN,
+                                INPUT_BOOLEAN_DOMAIN,
+                                BINARY_SENSOR_DOMAIN,
+                            ],
+                            multiple=False,
+                        ),
                     ),
-                ),
-            }),
+                },
+            ),
         )

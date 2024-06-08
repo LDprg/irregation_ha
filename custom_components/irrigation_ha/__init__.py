@@ -14,12 +14,13 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry):
     coordinator = IRRICoordinator(hass, config)
 
     hass.data[irri.DOMAIN] = {
-        'coord': coordinator,
+        "coord": coordinator,
     }
 
     hass.async_create_task(
         hass.config_entries.async_forward_entry_setups(
-            config_entry, ['sensor'],
+            config_entry,
+            ["sensor"],
         ),
     )
 
