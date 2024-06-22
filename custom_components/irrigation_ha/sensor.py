@@ -39,5 +39,7 @@ class IRRISensor(CoordinatorEntity, SensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
+        irri.LOGGER.warn("RECEIVED DATA: " + self.coordinator.data)
+
         self._attr_native_value = self.coordinator.data[self.entity_id]
         self.async_write_ha_state()
