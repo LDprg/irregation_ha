@@ -43,6 +43,9 @@ class IRRINumber(CoordinatorEntity, RestoreNumber):
         self._attr_name = uid
         self._attr_unique_id = uid
 
+        self._attr_mode = "box"
+        self._attr_native_unit_of_measurement = "min"
+
         self._attr_native_value = None
 
     async def async_added_to_hass(self) -> None:
