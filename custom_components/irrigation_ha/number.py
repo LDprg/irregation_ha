@@ -42,4 +42,4 @@ class IRRINumber(CoordinatorEntity, NumberEntity):
 
     async def async_set_native_value(self, value: float) -> None:
         """Update the current value."""
-        pass
+        self._attr_native_value = value
