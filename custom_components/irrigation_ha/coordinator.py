@@ -34,5 +34,7 @@ class IRRICoordinator(DataUpdateCoordinator):
         self,
         event: Event[EventStateChangedData] | None = None,
     ) -> None:
+        irri.LOGGER.warn(f"RECEIVED EVENT: {event}")
+
         self.data[event.data["entity_id"]] = event.data["new_state"]
         self.async_set_updated_data(self.data)
