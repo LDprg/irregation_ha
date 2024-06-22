@@ -86,7 +86,7 @@ class IRRITime(CoordinatorEntity, RestoreTime):
         if (last_number_data is not None) and (
             last_number_data.native_value is not None
         ):
-            await self.async_set_native_value(last_number_data.native_value)
+            await self.async_set_value(last_number_data.native_value)
 
     async def async_set_value(self, value: time) -> None:
         """Update the current value."""
