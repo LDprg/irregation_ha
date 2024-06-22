@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 from datetime import time
-import time as time_time
-from typing import Final
 
 from homeassistant.components.time import TimeEntity
 from homeassistant.config_entries import ConfigEntry
@@ -14,8 +12,6 @@ from homeassistant.helpers.restore_state import RestoreEntity
 
 from . import const as irri
 from .coordinator import IRRICoordinator
-
-_TIME_TRANSLATION_FORMAT: Final = "%H:%M:%S"
 
 
 async def async_setup_entry(
@@ -49,12 +45,7 @@ class IRRITime(CoordinatorEntity, TimeEntity, RestoreEntity):
         if (
             last_state := await self.async_get_last_state()
         ) is not None and last_state.state is not None:
-            await self.async_set_value(
-                time_time.strptime(
-                    last_state.state,
-                    _TIME_TRANSLATION_FORMAT,
-                ),
-            )
+            self._attr_state = last_state.state
 
     async def async_set_value(self, value: time) -> None:
         """Update the current value."""
