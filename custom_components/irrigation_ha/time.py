@@ -1,6 +1,7 @@
 """Platform for sensor integration."""
 
 from __future__ import annotations
+from datetime import time
 
 from homeassistant.components.time import TimeEntity
 from homeassistant.config_entries import ConfigEntry
@@ -34,3 +35,7 @@ class IRRITime(CoordinatorEntity, TimeEntity):
 
         self._attr_name = uid
         self._attr_unique_id = uid
+
+    async def async_set_value(self, value: time) -> None:
+        """Update the current value."""
+        pass

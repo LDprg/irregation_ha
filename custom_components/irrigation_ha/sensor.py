@@ -36,6 +36,8 @@ class IRRISensor(CoordinatorEntity, SensorEntity):
         self._attr_name = uid
         self._attr_unique_id = uid
 
+        self._attr_native_value = self.coordinator.hass.states.get("input_boolean.test")
+
     @callback
     def _handle_coordinator_update(self) -> None:
         """Handle updated data from the coordinator."""
