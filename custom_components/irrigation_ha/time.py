@@ -40,3 +40,4 @@ class IRRITime(CoordinatorEntity, TimeEntity):
     async def async_set_value(self, value: time) -> None:
         """Update the current value."""
         self._attr_native_value = value
+        self.async_write_ha_state()
