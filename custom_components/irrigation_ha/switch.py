@@ -48,7 +48,7 @@ class IRRISwitch(CoordinatorEntity, SwitchEntity, RestoreEntity):
         if (last_state := await self.async_get_last_state()) is not None:
             if last_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
                 self._attr_is_on = bool(last_state.state)
-            elif last_state.state is not STATE_UNKNOWN:
+            elif last_state.state is STATE_UNKNOWN:
                 self._attr_is_on = True
 
     async def async_turn_on(self, **kwargs):
