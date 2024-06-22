@@ -20,7 +20,7 @@ from .coordinator import IRRICoordinator
 class TimeExtraStoredData(ExtraStoredData):
     """Object to hold extra stored data."""
 
-    native_value: float | None
+    native_value: time | None
 
     def as_dict(self) -> dict[str, Any]:
         """Return a dict representation of the number data."""
