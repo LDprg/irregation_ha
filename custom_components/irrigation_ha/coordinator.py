@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
-
+from homeassistant.helpers.event import async_track_state_change_event
+from homeassistant.core import Event, EventStateChangedData, callback
+from homeassistant.const import CONF_ENTITY_ID
 from . import const as irri
 
 
@@ -19,3 +21,17 @@ class IRRICoordinator(DataUpdateCoordinator):
         )
         self.hass = hass
         self.config = config
+
+        async_track_state_change_event(
+            self.hass,
+            self.config[CONF_ENTITY_ID],
+            self.async_state_changed_listener,
+        )
+
+    @callback
+    def async_state_changed_listener(
+        self,
+        event: Event[EventStateChangedData] | None = None,
+    ) -> None:
+        self.data[event.context] = event.data
+        self.async_set_updated_data(self.data)
