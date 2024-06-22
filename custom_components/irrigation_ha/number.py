@@ -43,6 +43,8 @@ class IRRINumber(CoordinatorEntity, RestoreNumber):
         self._attr_name = uid
         self._attr_unique_id = uid
 
+        self._attr_native_value = None
+
     async def async_added_to_hass(self) -> None:
         """When entity is added to Home Assistant."""
         await super().async_added_to_hass()
