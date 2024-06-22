@@ -9,6 +9,10 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.restore_state import RestoreEntity
+from homeassistant.const import (
+    STATE_UNAVAILABLE,
+    STATE_UNKNOWN,
+)
 
 from . import const as irri
 from .coordinator import IRRICoordinator
@@ -44,7 +48,7 @@ class IRRITime(CoordinatorEntity, TimeEntity, RestoreEntity):
         await super().async_added_to_hass()
         if (
             last_state := await self.async_get_last_state()
-        ) is not None and last_state.state is not None:
+        ) is not None and last_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
             irri.LOGGER.warn(f"RESTORE TIME: {last_state}")
             self._attr_native_value = time.strftime(last_state.state, "%H:%M:%S")
 
