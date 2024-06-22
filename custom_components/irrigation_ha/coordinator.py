@@ -21,6 +21,7 @@ class IRRICoordinator(DataUpdateCoordinator):
         )
         self.hass = hass
         self.config = config
+        self.data = {}
 
         async_track_state_change_event(
             self.hass,
@@ -33,5 +34,5 @@ class IRRICoordinator(DataUpdateCoordinator):
         self,
         event: Event[EventStateChangedData] | None = None,
     ) -> None:
-        self.data[event.origin] = event.data
+        self.data[event.context] = event.data
         self.async_set_updated_data(self.data)
