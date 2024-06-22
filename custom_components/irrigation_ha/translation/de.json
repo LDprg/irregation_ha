@@ -2,15 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "F\u00fcller deine Irrigation configuration aus",
+        "title": "Fülle deine Irrigation configuration aus",
         "data": {
-          "entity_id": "Bew\u00e4sserungs Entity ID",
+          "entity_id": "Bewässerungs Entity ID",
           "count": "Interval Anzahl"
         }
       }
     },
     "error": {
-      "already_configured": "Ger\u00e4t bereits konfiguriert"
+      "already_configured": "Gerät bereits konfiguriert"
     }
   }
 }
