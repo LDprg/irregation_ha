@@ -43,7 +43,8 @@ class IRRINumber(CoordinatorEntity, NumberEntity):
         self._attr_name = uid
         self._attr_unique_id = uid
 
-        self._attr_native_value = 10
+        if self._attr_native_value is None:
+            self._attr_native_value = 10
 
     async def async_set_native_value(self, value: float) -> None:
         """Update the current value."""
