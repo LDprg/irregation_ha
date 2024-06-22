@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from datetime import time
+import time as time_time
 from typing import Final
 
 from homeassistant.components.time import TimeEntity
@@ -49,7 +50,7 @@ class IRRITime(CoordinatorEntity, TimeEntity, RestoreEntity):
             last_state := await self.async_get_last_state()
         ) is not None and last_state.state is not None:
             await self.async_set_value(
-                time.strptime(
+                time_time.strptime(
                     last_state.state,
                     _TIME_TRANSLATION_FORMAT,
                 ),
