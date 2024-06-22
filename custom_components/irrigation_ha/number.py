@@ -43,8 +43,16 @@ class IRRINumber(CoordinatorEntity, NumberEntity):
         self._attr_name = uid
         self._attr_unique_id = uid
 
-        if self._attr_native_value is None:
-            self._attr_native_value = 10
+    async def async_added_to_hass(self) -> None:
+        """When entity is added to Home Assistant."""
+        await super().async_added_to_hass()
+        last_number_data = await self.async_get_last_number_data()
+        if (last_number_data is not None) and (
+            last_number_data.native_value is not None
+        ):
+            await self.async_set_native_value(last_number_data.native_value)
+        else:
+            await self.async_set_native_value(10)
 
     async def async_set_native_value(self, value: float) -> None:
         """Update the current value."""
