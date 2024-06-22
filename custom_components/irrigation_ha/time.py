@@ -50,7 +50,7 @@ class IRRITime(CoordinatorEntity, TimeEntity, RestoreEntity):
             last_state := await self.async_get_last_state()
         ) is not None and last_state.state not in (STATE_UNKNOWN, STATE_UNAVAILABLE):
             irri.LOGGER.warn(f"RESTORE TIME: {last_state}")
-            self._attr_native_value = time.strftime(last_state.state, "%H:%M:%S")
+            self._attr_native_value = time.fromisoformat(last_state.state)
 
     async def async_set_value(self, value: time) -> None:
         """Update the current value."""
