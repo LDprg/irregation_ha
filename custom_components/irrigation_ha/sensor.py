@@ -19,7 +19,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Setup sensors from a config entry created in the integrations UI."""
-    coordinator: IRRICoordinator = hass.data[irri.DOMAIN]["coord"].state
+    coordinator: IRRICoordinator = hass.data[irri.DOMAIN]["coord"]
 
     async_add_entities(
         [IRRISensor(coordinator, name) for name in ["state"]],
@@ -36,7 +36,9 @@ class IRRISensor(CoordinatorEntity, SensorEntity):
         self._attr_name = uid
         self._attr_unique_id = uid
 
-        self._attr_native_value = self.coordinator.hass.states.get("input_boolean.test")
+        self._attr_native_value = self.coordinator.hass.states.get(
+            "input_boolean.test",
+        ).state
 
     @callback
     def _handle_coordinator_update(self) -> None:
