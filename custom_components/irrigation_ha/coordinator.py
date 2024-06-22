@@ -34,5 +34,5 @@ class IRRICoordinator(DataUpdateCoordinator):
         self,
         event: Event[EventStateChangedData] | None = None,
     ) -> None:
-        self.data[event.origin] = event.data
+        self.data[event.data["entity_id"]] = event.data["new_state"]
         self.async_set_updated_data(self.data)
