@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.number import NumberEntity
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import callback
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from homeassistant.const import CONF_COUNT
 
 from . import const as irri
 from .coordinator import IRRICoordinator
@@ -22,11 +22,15 @@ async def async_setup_entry(
     coordinator: IRRICoordinator = hass.data[irri.DOMAIN]["coord"]
 
     async_add_entities(
-        [IRRISensor(coordinator, name) for name in ["state"]],
+        [
+            IRRINumber(coordinator, name)
+            for name in ["stop_duration"]
+            + ["duration_" + str(i) for i in range(0, coordinator.config[CONF_COUNT])]
+        ],
     )
 
 
-class IRRISensor(CoordinatorEntity, SensorEntity):
+class IRRINumber(CoordinatorEntity, NumberEntity):
     """Representation of a Sensor."""
 
     def __init__(self, coordinator, uid):
@@ -35,11 +39,3 @@ class IRRISensor(CoordinatorEntity, SensorEntity):
 
         self._attr_name = uid
         self._attr_unique_id = uid
-
-    @callback
-    def _handle_coordinator_update(self) -> None:
-        """Handle updated data from the coordinator."""
-        irri.LOGGER.warn(f"RECEIVED DATA: {self.coordinator.data}")
-
-        self._attr_native_value = self.coordinator.data["input_boolean.test"]
-        self.async_write_ha_state()

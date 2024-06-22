@@ -4,9 +4,6 @@ from __future__ import annotations
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from homeassistant.components.binary_sensor import (
-    DOMAIN as BINARY_SENSOR_DOMAIN,
-)
 from homeassistant.components.input_boolean import (
     DOMAIN as INPUT_BOOLEAN_DOMAIN,
 )
@@ -47,7 +44,6 @@ class IrrigationHaFlow(ConfigFlow, domain=irri.DOMAIN):
                             domain=[
                                 SWITCH_DOMAIN,
                                 INPUT_BOOLEAN_DOMAIN,
-                                BINARY_SENSOR_DOMAIN,
                             ],
                             multiple=False,
                         ),
