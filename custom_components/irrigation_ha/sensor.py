@@ -41,5 +41,5 @@ class IRRISensor(CoordinatorEntity, SensorEntity):
         """Handle updated data from the coordinator."""
         irri.LOGGER.warn(f"RECEIVED DATA: {self.coordinator.data}")
 
-        self._attr_native_value = self.coordinator.data[self.entity_id]
+        self._attr_native_value = self.coordinator.data["input_boolean.test"]
         self.async_write_ha_state()
