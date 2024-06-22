@@ -35,6 +35,7 @@ class IRRITime(CoordinatorEntity, TimeEntity):
 
         self._attr_name = uid
         self._attr_unique_id = uid
+        self.native_value = None
 
     async def async_set_value(self, value: time) -> None:
         """Update the current value."""

@@ -19,7 +19,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Setup sensors from a config entry created in the integrations UI."""
-    coordinator: IRRICoordinator = hass.data[irri.DOMAIN]["coord"]
+    coordinator: IRRICoordinator = hass.data[irri.DOMAIN]["coord"].state
 
     async_add_entities(
         [IRRISensor(coordinator, name) for name in ["state"]],
