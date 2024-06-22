@@ -25,7 +25,10 @@ async def async_setup_entry(
         [
             IRRINumber(coordinator, name)
             for name in ["stop_duration"]
-            + ["duration_" + str(i) for i in range(0, coordinator.config[CONF_COUNT])]
+            + [
+                "duration_" + str(i)
+                for i in range(1, coordinator.config[CONF_COUNT] + 1)
+            ]
         ],
     )
 
