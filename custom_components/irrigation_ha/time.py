@@ -67,7 +67,7 @@ async def async_setup_entry(
     )
 
 
-class IRRITime(CoordinatorEntity, TimeEntity, RestoreTime):
+class IRRITime(CoordinatorEntity, RestoreTime):
     """Representation of a Sensor."""
 
     def __init__(self, coordinator, uid):
