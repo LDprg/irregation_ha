@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from homeassistant.components.switch import SwitchEntity
+from homeassistant.components.switch import SwitchEntity, SwitchDeviceClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -35,10 +35,12 @@ class IRRISwitch(CoordinatorEntity, SwitchEntity):
         self._attr_name = uid
         self._attr_unique_id = uid
 
+        self._attr_device_class = SwitchDeviceClass.SWITCH
+
     async def async_turn_on(self, **kwargs):
         """Turn the entity on."""
-        pass
+        self._attr_is_on = True
 
     async def async_turn_off(self, **kwargs):
         """Turn the entity off."""
-        pass
+        self._attr_is_on = False
