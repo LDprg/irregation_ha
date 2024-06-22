@@ -40,7 +40,9 @@ class IRRISwitch(CoordinatorEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs):
         """Turn the entity on."""
         self._attr_is_on = True
+        self.async_write_ha_state()
 
     async def async_turn_off(self, **kwargs):
         """Turn the entity off."""
         self._attr_is_on = False
+        self.async_write_ha_state()
